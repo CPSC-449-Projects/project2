@@ -1,5 +1,6 @@
 import hug
 import sqlite_utils
+import datetime
 import configparser
 import logging.config
 
@@ -21,7 +22,7 @@ def retrieveUserTimeline(response, username: hug.types.text):
     return {"post": posts}
 
 ''' Design the service of home timeline '''
-@hug.get("/homeTimeline/{username}")
+@hug.post("/homeTimeline/{username}")
 def retrieveHomeTimeline(response):
 
     return
@@ -37,3 +38,26 @@ def retrievePublicTimeline(response):
         response.status = '404 NOT FOUND'
 
     return {"post": posts}
+
+@hug.post("/post/", status=hug.falcon.HTTP_201)
+def postMessage(response,
+		username: hug.types.text,
+		text: hug.types.text,
+		):
+
+    posts = db["post"]
+
+    post = {
+        "username": username,
+        "text": text,
+        "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    try:
+        posts.insert(post)
+    except Exception as e:
+        response.status = hug.falcon.HTTP_409
+        return {"error": str(e)}
+
+    response.set_header("Location", "/post/")
+    return post
