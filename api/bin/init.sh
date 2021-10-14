@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sqlite-utils insert ./var/books.db books --csv ./share/books.csv --detect-types --pk=id
-sqlite-utils create-index ./var/books.db books published author title --unique
+sqlite-utils insert ./var/users.db users --csv ./share/users.csv --detect-types --pk=id
+sqlite-utils create-index ./var/users.db users username email_address --unique

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-http --verbose POST localhost:8000/books/ @"$1"
+http --verbose POST localhost:8000/users/ @"$1"

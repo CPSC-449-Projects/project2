@@ -1,0 +1,7 @@
+[2021-10-12 20:48:47,208] DEBUG in api: WHERE "username LIKE ?", ['%fishyfish%']
+[2021-10-12 21:22:46,499] DEBUG in api: WHERE "bio LIKE ?", ['%nothing%']
+[2021-10-12 21:23:03,603] DEBUG in api: WHERE "username LIKE ?", ['%fishyfish%']
+[2021-10-12 21:23:16,205] DEBUG in api: WHERE "password LIKE ?", ['%pew_pew%']
+[2021-10-12 21:23:26,587] DEBUG in api: WHERE "password LIKE ?", ['%pew_pew%']
+[2021-10-12 21:24:03,443] DEBUG in api: WHERE "password LIKE ?", ['%qwerty0909%']
+[2021-10-12 21:24:35,505] DEBUG in api: WHERE "username LIKE ? AND password LIKE ?", ['%fishyfish%', '%123456789%']

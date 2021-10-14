@@ -32,51 +32,73 @@ def log(name=__name__, **kwargs):
 
 # Routes
 #
-@hug.get("/books/")
+@hug.get("/users/")
 def books(db: sqlite):
-    return {"books": db["books"].rows}
+    return {"users": db["users"].rows}
 
+@hug.get("/users/{id}")
+def retrieve_book(response, id: hug.types.number, db: sqlite):
+    users = []
+    try:
+        user = db["users"].get(id)
+        user["follows"] = "me"
+        users.append(user)
+        # println(user['follows'])
+    except sqlite_utils.db.NotFoundError:
+        response.status = hug.falcon.HTTP_404
+    return {"users": user}
 
-@hug.post("/books/", status=hug.falcon.HTTP_201)
-def create_book(
+# Create new user
+@hug.post("/users/", status=hug.falcon.HTTP_201)
+def create_user(
     response,
-    published: hug.types.number,
-    author: hug.types.text,
-    title: hug.types.text,
-    first_sentence: hug.types.text,
+    username: hug.types.text,
+    email_address: hug.types.text,
+    password: hug.types.text,
+    bio: hug.types.text,
+    follows: hug.types.text,
     db: sqlite,
 ):
-    books = db["books"]
+    users = db["users"]
 
-    book = {
-        "published": published,
-        "author": author,
-        "title": title,
-        "first_sentence": first_sentence,
+    user = {
+        "username": username,
+        "email_address": email_address,
+        "password": password,
+        "bio": bio,
+        "follows": follows,
     }
 
     try:
-        books.insert(book)
-        book["id"] = books.last_pk
+        users.insert(user)
+        user["id"] = users.last_pk
     except Exception as e:
         response.status = hug.falcon.HTTP_409
         return {"error": str(e)}
 
-    response.set_header("Location", f"/books/{book['id']}")
-    return book
+    response.set_header("Location", f"/users/{user['id']}")
+    return user
 
-
-@hug.get("/books/{id}")
-def retrieve_book(response, id: hug.types.number, db: sqlite):
-    books = []
+# Follow new user
+@hug.get("/follow/username")
+def add_follow(response, username: hug.types.text, db: sqlite):
+    users = []
     try:
-        book = db["books"].get(id)
-        books.append(book)
+        user = db["users"].get(username)
+        # user['follows'] += follow
+        users.append(user)
+        println(user['follows'])
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
-    return {"books": books}
+    return {"users": user}
 
+# # Unfollow user
+# @hug.post("/unfollow", status=hug.falcon.HTTP_201)
+# def unfollow():
 
+# Change bio
+
+# Search
 @hug.get(
     "/search",
     examples=[
@@ -87,16 +109,12 @@ def retrieve_book(response, id: hug.types.number, db: sqlite):
     ],
 )
 def search(request, db: sqlite, logger: log):
-    books = db["books"]
+    users = db["users"]
 
     conditions = []
     values = []
 
-    if "published" in request.params:
-        conditions.append("published = ?")
-        values.append(request.params["published"])
-
-    for column in ["author", "title", "first_sentence"]:
+    for column in ["username", "email_address", "password", "bio", "follows"]:
         if column in request.params:
             conditions.append(f"{column} LIKE ?")
             values.append(f"%{request.params[column]}%")
@@ -104,6 +122,6 @@ def search(request, db: sqlite, logger: log):
     if conditions:
         where = " AND ".join(conditions)
         logger.debug('WHERE "%s", %r', where, values)
-        return {"books": books.rows_where(where, values)}
+        return {"users": users.rows_where(where, values)}
     else:
-        return {"books": books.rows}
+        return {"users": users.rows}
