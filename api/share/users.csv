@@ -1,6 +1,6 @@
-username,password,email_address,bio,follows
-fishyfish,123456789,fish@gmail.com,Facts about your favorite fish,"pew_pew, qweerty"
-pew_pew,questionlife,life_sad@gmail.com,meme lord,fishyfish
-qweerty,qwerty0909,iamgod@gmail.com,nothing good,
-weeeeeeb,animeislife,animeislife@gmail.com,a,"watch_it_play, fishyfish, pew_pew"
-watch_it_play,catan,watchitplay@gmail.com,#1 board game tutorial,"pew_pew, qweerty, fishyfish"
+username,password,email_address,bio
+fishyfish,123456789,fish@gmail.com,Facts about your favorite fish
+pew_pew,questionlife,life_sad@gmail.com,meme lord
+qweerty,qwerty0909,iamgod@gmail.com,nothing good
+weeeeeeb,animeislife,animeislife@gmail.com,a
+watch_it_play,catan,watchitplay@gmail.com,#1 board game tutorial
