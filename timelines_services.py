@@ -3,6 +3,7 @@ import sqlite_utils
 import datetime
 import configparser
 import logging.config
+import requests
 
 # Load the database
 db = sqlite_utils.Database("posts.db")
@@ -49,10 +50,16 @@ def retrievePublicTimeline(response):
 
     return {"post": posts}
 
-''' Design the service of allowing an existing user to post a message '''
-@hug.post("/post/", status=hug.falcon.HTTP_201)
-def postMessage(response, username: hug.types.text, text: hug.types.text):
+def check_user(username, password):
+    r = requests.get(f'localhost:8005/check_password?username={username}&password={password}')
+    return r.status
 
+authentication=hug.authentication.basic(check_user)
+''' Design the service of allowing an existing user to post a message '''
+@hug.post("/message", requires=authentication)
+def postMessage(response, user: hug.directives.user):
+    return user
+    '''
     posts = db["post"]
 
     post = {
@@ -79,3 +86,4 @@ def postMessage(response, username: hug.types.text, text: hug.types.text):
 
     response.set_header("Location", "/post/")
     return post
+    '''
