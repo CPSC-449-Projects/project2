@@ -12,3 +12,14 @@
 [2021-10-16 21:37:17,257] DEBUG in api: WHERE "username = ?", ['fishyfish']
 [2021-10-16 21:42:26,738] DEBUG in api: WHERE "username = ?", ['fishyfish']
 [2021-10-16 21:42:35,508] DEBUG in api: WHERE "username = ?", ['fihyfish']
+[2021-10-17 16:38:46,676] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-17 16:39:33,469] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-17 16:40:28,512] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-17 17:05:35,205] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): www.google.com:80
+[2021-10-17 17:05:35,429] DEBUG in urllib3.connectionpool: http://www.google.com:80 "GET / HTTP/1.1" 200 6199
+[2021-10-17 17:06:50,237] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): www.google.com:80
+[2021-10-17 17:06:50,434] DEBUG in urllib3.connectionpool: http://www.google.com:80 "GET / HTTP/1.1" 200 6227
+[2021-10-17 17:06:57,407] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): www.google.com:80
+[2021-10-17 17:06:57,614] DEBUG in urllib3.connectionpool: http://www.google.com:80 "GET / HTTP/1.1" 200 6229
+[2021-10-17 17:16:24,132] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-17 17:16:40,074] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
