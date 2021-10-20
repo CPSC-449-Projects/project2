@@ -4,6 +4,8 @@ import logging.config
 import hug
 import sqlite_utils
 
+import requests
+
 # Load configuration
 #
 config = configparser.ConfigParser()
@@ -25,11 +27,15 @@ def log(name=__name__, **kwargs):
 # Routes
 #
 @hug.get("/users/")
-def books(db: sqlite):
+def users(db: sqlite):
     return {"users": db["users"].rows}
 
+@hug.get("/get_following/{username}")
+def users(username: hug.types.text, db: sqlite):
+    return {"follows": db["follows"].rows_where("username = ?", [username])}
+
 @hug.get("/users/{username}")
-def retrieve_book(response, username: hug.types.text, db: sqlite):
+def retrieve_users(response, username: hug.types.text, db: sqlite):
     users = []
     try:
         user = db["users"].get(username)
@@ -85,18 +91,16 @@ def change_password(
         response.status = hug.falcon.HTTP_404
 
 #Check password
-@hug.get("/check_password")
-def check_password(request, response, db: sqlite, status=hug.falcon.HTTP_200):
-
+@hug.get("/login/")
+def login(request, response, db: sqlite):
     users_db = db["users"]
     try:
         user = users_db.get(request.params["username"])
         if request.params["password"] != user["password"]:
             response.status = hug.falcon.HTTP_401
     except sqlite_utils.db.NotFoundError:
-        response.status = hug.falcon.HTTP_404
-    return response.status
-
+        response.status = hug.falcon.HTTP_401
+    #return {'Authentication': response.status}
 
 # Follow new user
 @hug.post("/follow/", status=hug.falcon.HTTP_201)
