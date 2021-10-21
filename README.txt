@@ -57,8 +57,8 @@ handle the running of multiple instances of the 'timeline' service by using HAPr
    6.1. "log" folder			// Containing the log files of microservices
       6.1.1. users_services.log		// Containing records of activities within the 'users' microservice
       6.1.2. timelines_services.log	// Containing records of activities within the 'timelines' microservice
-      6.1.3. posts.db			// The database file that stores all users' posts
-      6.1.4. users.db			// The database file that stores all users' information and followings
+   6.2. posts.db			// The database file that stores all users' posts
+   6.3. users.db			// The database file that stores all users' information and followings
 
 7. "bin" folder				// Containing the shell files
    7.1. init.sh				// The shell script that initializes all database files
