@@ -86,10 +86,8 @@ def change_password(
             users_db.update(username, {"password": new_password})
         else:
             response.status = hug.falcon.HTTP_401
-            return {"error": str(e)}
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
-        return {"error": str(e)}
 
 ######## Check password ########
 @hug.get("/login/")
