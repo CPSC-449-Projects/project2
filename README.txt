@@ -174,7 +174,7 @@ To use the service through the terminal, please command: $ http --auth username:
    8.3. user_services_logging.ini
    8.4. timelines_services_logging.ini
 
-9. 'share' folder			// Containing the JSON and CSV files
+9. "share" folder			// Containing the JSON and CSV files
    9.1. new_bio.json
    9.2. new_follow.json
    9.3. new_password.json
