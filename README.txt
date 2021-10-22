@@ -72,7 +72,7 @@ In the terminal, please command: $ http --verbose PUT 127.0.0.1/change-password/
 
 - This service will verify the user's authentication by checking a user's username and password. If a user successfully logs in, they can access to some services that require the authentication. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect, and the error message will be returned.
 
-- To use the service in the browser, please type URL = "http://127.0.0.1/login?username={}&password={password}"
+- To use the service in the browser, please type URL = "http://127.0.0.1/login?username={username}&password={password}"
 
 7. @hug.post("/follow/", status=hug.falcon.HTTP_201)
 
