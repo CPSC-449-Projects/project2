@@ -203,5 +203,8 @@ $ sudo apt install --yes haproxy gunicorn
 4. To load the database for the services, command:
 $ ./bin/init.sh
 
-5. To run the services, command:
-$ foreman start
+5. To configure HAProcy to present as an HTTP load balancer, command:
+$ sudo nano /etc/haproxy/haproxy.cfg
+
+5. To start the services, command on another terminal:
+$ foreman start --formation user_services=1,timelines_services=3
