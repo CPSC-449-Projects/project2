@@ -74,21 +74,21 @@ def retrieveHomeTimeline(response, username: hug.types.text, user: hug.directive
     list_of_followings = list_of_followings.json()
 
     for following in list_of_followings["follows"]:
-        if following["username"] == username:
-            follows.append(following["following"])
+        follows.append(following["following"])
+    
+    follows = tuple(follows)
 
     posts = []
     try:
-        for post in db.query("SELECT * FROM post WHERE username IN (%s) ORDER BY timestamp DESC"
-                             % ','.join('?'*len(follows)), follows):
+        for post in db.query(f"SELECT * FROM post WHERE username IN {follows} ORDER BY timestamp DESC"):
             posts.append(post)
     except sqlite_utils.db.NotFoundError:
-        response.status = '404 NOT FOUND'
+        response.status = hug.falcon.HTTP_404
 
     return {"post": posts}
 
 ''' Design the service of allowing an existing user to post a message '''
-@hug.post("/message/{text}", requires=authentication)
+@hug.post("/message/", requires=authentication)
 def postMessage(response, username: hug.directives.user, text: hug.types.text, db: sqlite):
     posts = db["post"]
 
