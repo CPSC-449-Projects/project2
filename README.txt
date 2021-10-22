@@ -28,6 +28,10 @@ handle the running of multiple instances of the 'timeline' service by using HAPr
 
 ### MICROSERVICES - DETAILED DESCRIPTIONS ###
 
+## 'Users' Microservices ##
+
+
+
 ----------------------------------------------------------------------------------------------------
 
 ### REQUIREMENTS ###
