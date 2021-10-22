@@ -59,38 +59,41 @@ handle the running of multiple instances of the 'timeline' service by using HAPr
 - This service allows a user to create an account. A user's account will include a username, an email, a password, and a bio. If created successfully, the response status is '201 Created'. Otherwise, the response status is '409 Conflict' if a user tries to create an account that was already existed, and the error message will be returned.
 
 - To use the service through the terminal, please use 'new_user.json' as an example.
-In the terminal, please command: $ ./bin/post.sh ./share/new_user.json
+In the terminal, please command: $ http --verbose POST 127.0.0.1/create/ @./share/new_user.json
 
 5. @hug.put("/change-password/")
 
 - This service allows an existing user to change their password. If changed successfully, the response status is ' 200 OK'. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect.
 
 - To use the service through the terminal, please use 'new_password.json' as an example.
-In the terminal, please command: $ ./bin/post.sh ./share/new_password.json
+In the terminal, please command: $ http --verbose PUT 127.0.0.1/change-password/ @./share/new_password.json
 
 6. @hug.get("/login/")
 
 - This service will verify the user's authentication by checking a user's username and password. If a user successfully logs in, they can access to some services that require the authentication. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect, and the error message will be returned.
 
-- To use the service in the browser, please type URL = "localhost:PORT/login"
+- To use the service in the browser, please type URL = "http://127.0.0.1/login?username={}&password={password}"
 
 7. @hug.post("/follow/", status=hug.falcon.HTTP_201)
 
 - This service allows an existing user to follow each other. If followed successfully, the response status is '201 Created'. Otherwise, the response status is '409 Conflict' if a user tries to follow another user that they already followed.
 
 - To use the service through the terminal, please use 'new_follow.json' as an example.
-In the terminal, please command: $ ./bin/post.sh ./share/new_follow.json
+In the terminal, please command: $ http --verbose POST 127.0.0.1/follow/ @./share/new_follow.json
 
 8. @hug.post("/unfollow/")
 
 - This service allows an existing user to unfollow each other. A user needs to provide their username and another user's username that they want to unfollow. If unfollowed successfully, the response status is '200 OK'. Otherwise, the response status is '409 Conflict' if a user tries to unfollow another user that they do not follow yet.
+
+- To use the service through the terminal, please use 'new_follow.json' as an example.
+In the terminal, please command: $ http --verbose POST 127.0.0.1/unfollow/ @./share/new_follow.json
 
 9. @hug.put("/update-bio/")
 
 - This service allows an existing user to update their bio. They need to provide their username and the text for their bio. If updated successfully, the response status is '200 OK'. Otherwise, the response status is '400 Bad Request' if inputs are incorrect or missing.
 
 - To use the service through the terminal, please use 'new_bio.json' as an example.
-In the terminal, please command: $ ./bin/post.sh ./share/new_bio.json
+In the terminal, please command: $ http --verbose PUT 127.0.0.1/update-bio/ @./share/new_bio.json
 
 ## 'Timelines' Microservices ##
 
