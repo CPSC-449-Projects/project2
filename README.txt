@@ -130,7 +130,7 @@ To use the service through the terminal, please command: $ http 127.0.0.1/homeTi
 
 - This service allows an existing user to post messages, but they need to get the authorization to do so by logging in and then input the text for the post. If authenticated successfully and inputted correctly, the response status is '201 Created', and the post will be returned as a JSON format. Otherwise, the response status is either '401 Unauthorized' due to the failure of login or '400 Bad Request' if the input is incorrect or missing.
 
-To use the service through the terminal, please command: $ http --auth username:password POST localhost:PORT/message/ text="The text of the post"
+To use the service through the terminal, please command: $ http --auth username:password POST 127.0.0.1/message/ text="The text of the post"
 
 ----------------------------------------------------------------------------------------------------
 
