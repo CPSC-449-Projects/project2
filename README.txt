@@ -70,7 +70,7 @@ In the terminal, please command: $ ./bin/post.sh ./share/new_password.json
 
 6. @hug.get("/login/")
 
-- This service will require the user's authentication by asking them to log in. If a user successfully logs in, they can access to some services that require the authentication. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect, and the error message will be returned.
+- This service will verify the user's authentication by checking a user's username and password. If a user successfully logs in, they can access to some services that require the authentication. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect, and the error message will be returned.
 
 - To use the service in the browser, please type URL = "localhost:PORT/login"
 
