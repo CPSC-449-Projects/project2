@@ -96,7 +96,7 @@ In the terminal, please command: $ ./bin/post.sh ./share/new_bio.json
 
 1. @hug.get("/post/")
 
-- This service will return all users' posts from the database as a JSON content.
+- This service will return all users' posts from the database as a JSON format.
 
 To use the service in the browser, please type URL = "localhost:PORT/post/"
 
