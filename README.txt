@@ -34,25 +34,25 @@ handle the running of multiple instances of the 'timeline' service by using HAPr
 
 - This service will return all existing users from the database as a JSON format.
 
-- To use the service in the browser, please type URL = "localhost:PORT/users/"
+- To use the service in the browser, please type URL = "http://127.0.0.1/users/"
 
-- To use the service through the terminal, please command: $ http localhost:PORT/users/
+- To use the service through the terminal, please command: $ http 127.0.0.1/users/
 
 2. @hug.get("/users/{username}")
 
 - This service will retrieve the specific user based on 'username' as the endpoint. If found, the response status will be '200 OK' and return the specific user as a JSON format. Otherwise, the response status is '404 NOT FOUND'.
 
-- To use the service in the browser, please type URL = "localhost:PORT/users/{username}"
+- To use the service in the browser, please type URL = "http://127.0.0.1/users/{username}"
 
-- To use the service through the terminal, please command: $ http localhost:PORT/users/{username}
+- To use the service through the terminal, please command: $ http 127.0.0.1/users/{username}
 
 3. @hug.get("/get-following/{username}")
 
 - This service retrieves all users that a user follows based on 'username' as the endpoint from the databbase. Users will be returned as a JSON format.
 
-- To use the service in the browser, please type URL = "localhost:PORT/get-following/{username}"
+- To use the service in the browser, please type URL = "http://127.0.0.1/get-following/{username}"
 
-- To use the service through the terminal, please command: $ http localhost:PORT/get-following/{username}
+- To use the service through the terminal, please command: $ http 127.0.0.1/get-following/{username}
 
 4. @hug.post("/create/", status=hug.falcon.HTTP_201)
 
@@ -98,33 +98,33 @@ In the terminal, please command: $ ./bin/post.sh ./share/new_bio.json
 
 - This service will return all users' posts from the database as a JSON format.
 
-To use the service in the browser, please type URL = "localhost:PORT/post/"
+To use the service in the browser, please type URL = "http://127.0.0.1/post/"
 
-To use the service through the terminal, please command: $ http localhost:PORT/post/
+To use the service through the terminal, please command: $ http 127.0.0.1/post/
 
 2. @hug.get("/userTimeline/{username}")
 
 - This service will provide a user timeline by retrieving all posts that a user has made based on 'username' as the endpoint. If retrieved successfully, the response status is '200 OK', and all posts will be returned as a JSON format by the reverse chronological order. Otherwise, the response status is '404 Not Found' if the input is not correct, and the returned post is empty.
 
-To use the service in the browser, please type URL = "localhost:PORT/userTimeline/{username}"
+To use the service in the browser, please type URL = "http://127.0.0.1/userTimeline/{username}"
 
-To use the service through the terminal, please command: $ http localhost:PORT/userTimeline/{username}
+To use the service through the terminal, please command: $ http 127.0.0.1/userTimeline/{username}
 
 3. @hug.get("/publicTimeline/")
 
 - This service will retrieve all users' posts and return them in the reverse chronological order as a public timeline. If retrieved successfully, the response status is '200 OK', and all posts will be returned as a JSON format. Otherwise, the response status is '404 Not Found', and the returned post is empty.
 
-To use the service in the browser, please type URL = "localhost:PORT/publicTimeline/"
+To use the service in the browser, please type URL = "http://127.0.0.1/publicTimeline/"
 
-To use the service through the terminal, please command: $ http localhost:PORT/publicTimeline/
+To use the service through the terminal, please command: $ http 127.0.0.1/publicTimeline/
 
 4. @hug.get("/homeTimeline/{username}", requires=authentication)
 
 - This service allows an existing user to see all users' posts that they followed as a home timeline. However, they need to get the authorization to use the service by logging in. Also, they can only access their home timeline to themselves. If authenticated successfully, all users' posts that a user followed will be returned as a JSON format in the reverse chronological order. Otherwise, the response status is '404 Not Found' if an input is not correct, and the returned post is empty.
 
-To use the service in the browser, please type URL = "localhost:PORT/homeTimeline/{username}"
+To use the service in the browser, please type URL = "http://127.0.0.1/homeTimeline/{username}"
 
-To use the service through the terminal, please command: $ http localhost:PORT/homeTimeline/{username}
+To use the service through the terminal, please command: $ http 127.0.0.1/homeTimeline/{username}
 
 5. @hug.post("/message/", requires=authentication)
 
