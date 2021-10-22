@@ -30,7 +30,83 @@ handle the running of multiple instances of the 'timeline' service by using HAPr
 
 ## 'Users' Microservices ##
 
+1. @hug.get("/users/")
 
+- This service will return all existing users from the database as a JSON content.
+
+- To use the service in the browser, please type URL = "localhost:PORT/users/"
+
+For example: "localhost:5000/users/"
+
+- To use the service through the terminal, please command: $ http localhost:PORT/users/
+
+For example: $ http localhost:5000/users/
+
+2. @hug.get("/users/{username}")
+
+- This service will retrieve the specific user based on 'username' as the endpoint. If found, the response status will be '200 OK' and return the specific user as a JSON content. Otherwise, the response status is '404 NOT FOUND'.
+
+- To use the service in the browser, please type URL = "localhost:PORT/users/{username}"
+
+For example: "localhost:5000/users/profavery"
+
+- To use the service through the terminal, please command: $ http localhost:PORT/users/{username}
+
+For example: http localhost:5000/users/profavery
+
+3. @hug.get("/get-following/{username}")
+
+- This service retrieves all users that a user follows based on 'username' as the endpoint from the databbase. Users will be returned as a JSON content.
+
+- To use the service in the browser, please type URL = "localhost:PORT/get-following/{username}"
+
+For example: "localhost:5000/get-following/profavery"
+
+- To use the service through the terminal, please command: $ http localhost:PORT/get-following/{username}
+
+For example: http localhost:5000/get-following/profavery
+
+4. @hug.post("/create/", status=hug.falcon.HTTP_201)
+
+- This service allows a user to create an account. A user's account will include a username, an email, a password, and a bio. If created successfully, the response status is '201 Created'. Otherwise, the response status is '409 Conflict' if a user tries to create an account that was already existed, and the error message will be returned.
+
+5. @hug.put("/change-password/")
+
+- This service allows an existing user to change their password. If changed successfully, the response status is ' 200 OK'. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect.
+
+6. @hug.get("/login/")
+
+- This service will require the user's authentication by asking them to log in. If a user successfully logs in, they can access to some services that require the authentication. Otherwise, the response status is either '401 Unauthorized' or '404 Not Found' if inputs are incorrect, and the error message will be returned.
+
+7. @hug.post("/follow/", status=hug.falcon.HTTP_201)
+
+- This service allows an existing user to follow each other. If followed successfully, the response status is '201 Created'. Otherwise, the response status is '409 Conflict' if a user tries to follow another user that they already followed.
+
+8. @hug.post("/unfollow/")
+
+- This service allows an existing user to unfollow each other. A user needs to provide their username and another user's username that they want to unfollow. If unfollowed successfully, the response status is '200 OK'. Otherwise, the response status is '409 Conflict' if a user tries to unfollow another user that they do not follow yet.
+
+9. @hug.put("/update-bio/")
+
+- This service allows an existing user to update their bio. They need to provide their username and the text for their bio. If updated successfully, the response status is '200 OK'. Otherwise, the response status is '400 Bad Request' if inputs are incorrect or missing.
+
+## 'Timelines' Microservices ##
+
+1. @hug.get("/post/")
+
+- This service will return all users' posts from the database as a JSON content.
+
+To use the service in the browser, please type URL.
+
+2. @hug.get("/userTimeline/{username}")
+
+- This service will provide a user timeline by retrieving all posts that a user has made based on 'username' as the endpoint. If retrieved successfully, the response status is '200 OK', and all posts will be returned as a JSON format by the reverse chronological order. Otherwise, the response status is '404 Not Found' if the input is not correct, and the returned post is empty.
+
+3. @hug.get("/publicTimeline/")
+
+- This service will retrieve all users' posts and return them in the reverse chronological order as a public timeline. If retrieved successfully, the response status is '200 OK', and all posts will be returned as a JSON format. Otherwise, the response status is '404 Not Found', and the returned post is empty.
+
+4. 
 
 ----------------------------------------------------------------------------------------------------
 
