@@ -206,5 +206,5 @@ $ ./bin/init.sh
 5. To configure HAProcy to present as an HTTP load balancer, command:
 $ sudo nano /etc/haproxy/haproxy.cfg
 
-5. To start the services, command on another terminal:
+5. To start two microservices concurrently, command on another terminal:
 $ foreman start --formation user_services=1,timelines_services=3
